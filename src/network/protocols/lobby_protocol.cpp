@@ -105,7 +105,7 @@ void LobbyProtocol::configRemoteKart(
     int local_player_size) const
 {
     // The number of karts includes the AI karts, which are not supported atm
-    RaceManager::get()->setNumKarts((int)players.size());
+    RaceManager::get()->setNumKarts(std::max((int)players.size(), 6));
 
     // Set number of global and local players.
     RaceManager::get()->setNumPlayers((int)players.size(), local_player_size);

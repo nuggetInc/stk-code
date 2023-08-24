@@ -474,21 +474,6 @@ void RaceManager::startNew(bool from_overworld)
         }
     }
 
-    // Then add the AI karts (randomly chosen)
-    // ----------------------------------------
-    const unsigned int ai_kart_count = (unsigned int)m_ai_kart_list.size();
-    for(unsigned int i = 0; i < ai_kart_count; i++)
-    {
-        m_kart_status.push_back(KartStatus(m_ai_kart_list[i], i, -1, -1,
-            init_gp_rank, KT_AI, HANDICAP_NONE));
-        init_gp_rank ++;
-        if(UserConfigParams::m_ftl_debug)
-        {
-            Log::debug("RaceManager", "[ftl] rank %d ai-kart %s", init_gp_rank,
-                   m_ai_kart_list[i].c_str());
-        }
-    }
-
     // Finally add the players, which start behind the AI karts
     // -----------------------------------------------------
     for(unsigned int i = 0; i < m_player_karts.size(); i++)
@@ -498,14 +483,29 @@ void RaceManager::startNew(bool from_overworld)
         m_kart_status.push_back(KartStatus(m_player_karts[i].getKartName(), i,
                                            m_player_karts[i].getLocalPlayerId(),
                                            m_player_karts[i].getGlobalPlayerId(),
-                                           init_gp_rank, kt,
+                                           init_gp_rank + m_ai_kart_list.size(), kt,
                                            m_player_karts[i].getHandicap()));
         if(UserConfigParams::m_ftl_debug)
         {
-            Log::debug("RaceManager", "[ftl] rank %d kart %s", init_gp_rank,
+            Log::debug("RaceManager", "[ftl] rank %d kart %s", init_gp_rank + m_ai_kart_list.size(),
                 m_player_karts[i].getKartName().c_str());
         }
         init_gp_rank ++;
+    }
+
+    // Then add the AI karts (randomly chosen)
+    // ----------------------------------------
+    const unsigned int ai_kart_count = (unsigned int)m_ai_kart_list.size();
+    for(unsigned int i = 0; i < ai_kart_count; i++)
+    {
+        m_kart_status.push_back(KartStatus(m_ai_kart_list[i], i, -1, -1,
+            init_gp_rank - m_player_karts.size(), KT_AI, HANDICAP_NONE));
+        init_gp_rank ++;
+        if(UserConfigParams::m_ftl_debug)
+        {
+            Log::debug("RaceManager", "[ftl] rank %d ai-kart %s", init_gp_rank - m_player_karts.size(),
+                   m_ai_kart_list[i].c_str());
+        }
     }
 
     m_track_number = 0;
