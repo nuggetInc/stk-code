@@ -5,11 +5,19 @@
 [![Switch build status](https://github.com/supertuxkart/stk-code/actions/workflows/switch.yml/badge.svg)](https://github.com/supertuxkart/stk-code/actions/workflows/switch.yml)
 [![#supertuxkart on the libera IRC network](https://img.shields.io/badge/libera-%23supertuxkart-brightgreen.svg)](https://web.libera.chat/?channels=#supertuxkart)
 
+**This is a personal fork of [supertuxkart/stk-code](https://github.com/supertuxkart/stk-code) to apply a small patch to play online with bots**
+
 SuperTuxKart is a free kart racing game. It focuses on fun and not on realistic kart physics. Instructions can be found on the in-game help page.
 
 The SuperTuxKart homepage can be found at <https://supertuxkart.net/>. There is also our [FAQ](https://supertuxkart.net/FAQ) and information on how get in touch with the [community](https://supertuxkart.net/Community).
 
 Latest release binaries can be found [here](https://github.com/supertuxkart/stk-code/releases/latest), and preview release [here](https://github.com/supertuxkart/stk-code/releases/preview).
+
+# Notes about this fork
+
+- There curently exists a side effects that causes your kart to spawn in front of all the bots
+- Do not open pull requests directly here unless they change/require some code that has diverged from upstream
+- Similarly, don't open issues here unless the issue was likely caused by some code here that's not in [supertuxkart/stk-code](https://github.com/supertuxkart/stk-code)
 
 ## Hardware Requirements
 To run SuperTuxKart, make sure that your computer's specifications are equal or higher than the following specifications:
